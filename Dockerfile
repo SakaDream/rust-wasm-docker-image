@@ -1,7 +1,7 @@
 FROM rust:slim
 
 LABEL "org.opencontainers.image.title"="Rust WASM"
-LABEL "org.opencontainers.image.description"="Rust WASM Docker Image with wasm-pack, cargo generate and yarn pre-installed"
+LABEL "org.opencontainers.image.description"="Rust WASM Docker Image with wasm-pack, cargo generate, yarn, git and deno pre-installed"
 LABEL "org.opencontainers.image.authors"="SakaDream"
 
 RUN set -ex \
