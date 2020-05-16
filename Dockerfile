@@ -13,4 +13,5 @@ RUN set -ex \
     && apt-get update \
     && apt-get install -y nodejs yarn --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
-    && cargo install wasm-pack cargo-generate
+    && cargo install wasm-pack cargo-generate  \
+    && curl -fsSL https://deno.land/x/install/install.sh | sh
