@@ -24,3 +24,4 @@ jobs:
           repository: sakadream/rust-wasm
           add_git_labels: true
           tag_with_ref: true
+          cache_froms: sakadream/rust-wasm:latest
