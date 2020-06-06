@@ -1,7 +1,7 @@
 FROM rust:slim
 
 LABEL "org.opencontainers.image.title"="Rust WASM"
-LABEL "org.opencontainers.image.description"="Rust WASM Docker Image with wasm-pack, cargo generate, yarn, git and deno pre-installed"
+LABEL "org.opencontainers.image.description"="Rust WASM Docker Image with wasm-pack, cargo generate, yarn, git, deno and miniserve pre-installed"
 LABEL "org.opencontainers.image.authors"="SakaDream"
 
 RUN set -ex \
@@ -14,4 +14,9 @@ RUN set -ex \
     && apt-get install -y nodejs yarn --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && cargo install wasm-pack cargo-generate \
-    && curl -fsSL https://deno.land/x/install/install.sh | sh
+    && curl -fsSL https://deno.land/x/install/install.sh | sh \
+    && mkdir /miniserve \
+    && curl -sL https://github.com/svenstaro/miniserve/releases/latest/download/miniserve-linux-x86_64 -o /miniserve/miniserve \
+    && chmod +x /miniserve/miniserve
+
+ENV PATH="/miniserve:${PATH}"
