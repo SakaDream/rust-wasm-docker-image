@@ -1,7 +1,7 @@
 FROM rust:slim
 
 LABEL "org.opencontainers.image.title"="Rust WASM"
-LABEL "org.opencontainers.image.description"="Rust WASM Docker Image with wasm-pack, cargo generate, yarn, git, deno and miniserve pre-installed"
+LABEL "org.opencontainers.image.description"="Rust WASM Docker Image with wasm-pack, cargo generate, yarn, git, deno and http-server pre-installed"
 LABEL "org.opencontainers.image.authors"="SakaDream"
 
 RUN set -ex \
@@ -12,11 +12,11 @@ RUN set -ex \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && apt-get update \
     && apt-get install -y nodejs yarn --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/* \
     && cargo install wasm-pack cargo-generate \
     && curl -fsSL https://deno.land/x/install/install.sh | sh \
-    && mkdir /miniserve \
-    && curl -sL https://github.com/svenstaro/miniserve/releases/latest/download/miniserve-linux-x86_64 -o /miniserve/miniserve \
-    && chmod +x /miniserve/miniserve
-
-ENV PATH="/miniserve:${PATH}"
+    && npm install http-server -g \
+    && npm cache verify \
+    && yarn cache clean --all \
+    && rm -rf ${CARGO_HOME}/git/* \
+    && rm -rf ${CARGO_HOME}/registry/* \
+    && rm -rf /var/lib/apt/lists/*
