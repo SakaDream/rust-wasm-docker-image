@@ -1,7 +1,7 @@
 FROM rust:slim
 
 LABEL "org.opencontainers.image.title"="Rust WASM"
-LABEL "org.opencontainers.image.description"="Rust WASM Docker Image with wasm-pack, cargo generate, yarn, git, deno and http-server pre-installed"
+LABEL "org.opencontainers.image.description"="Rust WASM Docker Image with wasm-pack, cargo generate, yarn, git and deno pre-installed"
 LABEL "org.opencontainers.image.authors"="SakaDream"
 
 RUN set -ex \
@@ -14,7 +14,6 @@ RUN set -ex \
     && apt-get install -y nodejs yarn --no-install-recommends \
     && cargo install wasm-pack cargo-generate \
     && curl -fsSL https://deno.land/x/install/install.sh | sh \
-    && npm install http-server -g \
     && npm cache verify \
     && yarn cache clean --all \
     && rm -rf ${CARGO_HOME}/git/* \
