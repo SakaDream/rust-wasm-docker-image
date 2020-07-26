@@ -18,4 +18,7 @@ RUN set -ex \
     && yarn cache clean --all \
     && rm -rf ${CARGO_HOME}/git/* \
     && rm -rf ${CARGO_HOME}/registry/* \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir /app
+
+WORKDIR /app
