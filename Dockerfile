@@ -12,7 +12,7 @@ RUN set -ex \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && apt-get update \
     && apt-get install -y nodejs yarn --no-install-recommends \
-    && cargo install wasm-pack cargo-generate \
+    && cargo install wasm-pack cargo-generate trunk \
     && curl -fsSL https://deno.land/x/install/install.sh | sh \
     && npm cache verify \
     && yarn cache clean --all \
