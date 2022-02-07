@@ -12,6 +12,7 @@ RUN set -ex \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && apt-get update \
     && apt-get install -y nodejs yarn --no-install-recommends \
+    && rustup target add wasm32-unknown-unknown \
     && cargo install cargo-generate trunk \
     && curl -fsSL https://deno.land/x/install/install.sh | sh \
     && npm cache verify \
